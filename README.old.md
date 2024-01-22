@@ -52,3 +52,6 @@
     >> https://axios-http.com/docs/example
     >> https://headlessui.com/react/dialog
     >> https://react-icons.github.io/react-icons/
+
+
+the MovieDB API :dff462a3ae42d2a7a0b3e9cd4ff7d9e6

@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 
 //HOC
 import DefaultlayoutHoc from '../layot/ Default.layout'
@@ -14,7 +15,44 @@ const HomePage = () => {
   const [recommendedMovies, setrecommendedMovies ] = useState([]);
    const [premierMovies, setpremierMovies ] = useState([]);
     const [onlineStreamEvents, setonlineStreamEvents ] = useState([]);
-   return (
+
+
+    useEffect(() => {
+      const requestTopRatedMovies = async () => {
+      const getTopRatedMovies = await axios.get(
+         "https://api.themoviedb.org/3/movie/top_rated?api_key=dff462a3ae42d2a7a0b3e9cd4ff7d9e6");
+         setrecommendedMovies(getTopRatedMovies.data.results);
+      };
+       requestTopRatedMovies()
+    }, []);
+
+
+     useEffect(() => {
+    const requestPopularMovies = async () => {
+      const getPopularMovies = await axios.get(
+        "https://api.themoviedb.org/3/movie/popular?api_key=dff462a3ae42d2a7a0b3e9cd4ff7d9e6"
+      );
+      setpremierMovies(getPopularMovies.data.results);
+    };
+    requestPopularMovies();
+  }, []);
+
+   useEffect(() => {
+    const requestUpcomingMovies = async () => {
+      const getUpcomingMovies = await axios.get(
+        "https://api.themoviedb.org/3/movie/upcoming?api_key=dff462a3ae42d2a7a0b3e9cd4ff7d9e6"
+      );
+      setonlineStreamEvents(getUpcomingMovies.data.results);
+    };
+    requestUpcomingMovies();
+  }, []);
+
+
+
+   
+
+    
+     return (
     <>
       <HeroCarousel />
       <div className="container mx-auto px-4 md:px-12 my-8">
@@ -27,12 +65,12 @@ const HomePage = () => {
       <div className="container mx-auto px-4 md:px-12 my-8">
         <PosterSlider
           title="Recommended Movies"
-          subject="List of Recommended Movies"
+          subtitle="List of Recommended Movies"
           posters={recommendedMovies}
           isDark={false}
         />
       </div>
-       <div className="bg-premier-800 py-12">
+      <div className="bg-premier-800 py-12">
         <div className="container mx-auto px-4 md:px-12 my-8 flex flex-col gap-3">
           <div className="hidden md:flex">
             <img
@@ -41,29 +79,25 @@ const HomePage = () => {
               className="w-full h-full"
             />
           </div>
-           <PosterSlider
+          <PosterSlider
             title="Premiers"
-            subject="Brand new release every Friday"
+            subtitle="Brand new release every Friday"
             posters={premierMovies}
             isDark={true}
           />
         </div>
       </div>
 
-            <div className="container mx-auto px-4 md:px-12 my-8 flex flex-col gap-3">
+      <div className="container mx-auto px-4 md:px-12 my-8 flex flex-col gap-3">
         <PosterSlider
           title="Online Streaming Events"
-          subject="Online Streaming Events"
+          subtitle="Online Streaming Events"
           posters={onlineStreamEvents}
-          isDark={false} 
-         />
-      </div> 
+          isDark={false}
+        />
+      </div>
     </>
   );
 };
 
-
-
 export default DefaultlayoutHoc(HomePage);
-  
-  
