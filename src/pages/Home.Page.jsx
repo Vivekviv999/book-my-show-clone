@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import React, {useEffect, useState} from "react";
+import axios from "axios";
 
 //HOC
 import DefaultlayoutHoc from '../layot/ Default.layout'
@@ -30,8 +30,7 @@ const HomePage = () => {
      useEffect(() => {
     const requestPopularMovies = async () => {
       const getPopularMovies = await axios.get(
-        "https://api.themoviedb.org/3/movie/popular?api_key=dff462a3ae42d2a7a0b3e9cd4ff7d9e6"
-      );
+        "https://api.themoviedb.org/3/movie/popular?api_key=dff462a3ae42d2a7a0b3e9cd4ff7d9e6");
       setpremierMovies(getPopularMovies.data.results);
     };
     requestPopularMovies();
@@ -40,8 +39,7 @@ const HomePage = () => {
    useEffect(() => {
     const requestUpcomingMovies = async () => {
       const getUpcomingMovies = await axios.get(
-        "https://api.themoviedb.org/3/movie/upcoming?api_key=dff462a3ae42d2a7a0b3e9cd4ff7d9e6"
-      );
+        "https://api.themoviedb.org/3/movie/upcoming?api_key=dff462a3ae42d2a7a0b3e9cd4ff7d9e6");
       setonlineStreamEvents(getUpcomingMovies.data.results);
     };
     requestUpcomingMovies();
