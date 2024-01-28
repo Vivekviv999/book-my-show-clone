@@ -2,6 +2,7 @@ import "./App.css";
 import axios from "axios";
 
 
+
 // Routes
 import { Routes, Route } from "react-router-dom";
 
@@ -15,7 +16,12 @@ import MoviePage from "./pages/Movie.Page";
 import PlayPage from "./pages/Play.Page";
 
 
-axios.defaults.baseURL = "https://api.themoviedb.org/3";
+axios.defaults.baseURL = "https://api.themoviedb.org/3"
+axios.defaults.params = {};
+axios.defaults.params["api_key"] = "dff462a3ae42d2a7a0b3e9cd4ff7d9e6"
+
+
+
 // axios.defaults.params = {};
 // axios.defaults.params["api_key"] = process.env.REACT_APP_API_KEY;
 
